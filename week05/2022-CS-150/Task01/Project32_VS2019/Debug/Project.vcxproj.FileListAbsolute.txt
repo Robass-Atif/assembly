@@ -1,0 +1,3 @@
+C:\Users\DELL\Desktop\Assembly\week05\Project32_VS2019\Project32_VS2019\Debug\Project.exe
+C:\Users\DELL\Desktop\Assembly\week05\2022-CS-150\Project32_VS2019\Debug\Project.exe
+C:\Users\DELL\Desktop\Assembly\week05\2022-CS-150\Task01\Project32_VS2019\Debug\Project.exe
