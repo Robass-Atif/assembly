@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.29.30148.0	    10/24/23 20:04:59
+Microsoft (R) Macro Assembler Version 14.29.30148.0	    11/16/23 13:23:28
 temp.asm						     Page 1 - 1
 
 
@@ -21,23 +21,23 @@ temp.asm						     Page 1 - 1
 			      C .LIST
 			      C 
  00000000			.data
- 00000000 00010000		val1 dword 10000h
- 00000004 00040000		val2 dword 40000h
- 00000008 00020000		val3 dword 20000h
- 0000000C 00000000		finalVal dword ?
+
  00000000			.code
  00000000			main PROC
- 00000000  A1 00000000 R	mov eax,val1 ; start with 10000h
- 00000005  03 05 00000004 R	add eax,val2 ; add 40000h
- 0000000B  2B 05 00000008 R	sub eax,val3 ; subtract 20000h
- 00000011  A3 0000000C R	mov finalVal,eax ; store the result (30000h)
- 00000016  E8 00000000 E	call DumpRegs ; display the registers
+ 00000000  B8 00000000		mov eax,0
+ 00000005  B0 97		mov al,10010111b
+ 00000007  E8 00000000 E	call writebin
+ 0000000C  E8 00000000 E	call crlf
+ 00000011  C0 D8 02		rcr al,2
+ 00000014  E8 00000000 E	call writebin
+
+
 				exit
- 0000001B  6A 00	   *	    push   +000000000h
- 0000001D  E8 00000000 E   *	    call   ExitProcess
- 00000022			main ENDP
+ 00000019  6A 00	   *	    push   +000000000h
+ 0000001B  E8 00000000 E   *	    call   ExitProcess
+ 00000020			main ENDP
 				END main
-Microsoft (R) Macro Assembler Version 14.29.30148.0	    10/24/23 20:04:59
+Microsoft (R) Macro Assembler Version 14.29.30148.0	    11/16/23 13:23:28
 temp.asm						     Symbols 2 - 1
 
 
@@ -131,8 +131,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000010 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 00000022 Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000020 Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -239,7 +239,7 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000022 Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000020 Public STDCALL
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -463,7 +463,6 @@ blue . . . . . . . . . . . . . .	Number	 00000001h
 brown  . . . . . . . . . . . . .	Number	 00000006h   
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
-finalVal . . . . . . . . . . . .	DWord	 0000000C _DATA	
 gray . . . . . . . . . . . . . .	Number	 00000008h   
 green  . . . . . . . . . . . . .	Number	 00000002h   
 lightBlue  . . . . . . . . . . .	Number	 00000009h   
@@ -474,9 +473,6 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-val1 . . . . . . . . . . . . . .	DWord	 00000000 _DATA	
-val2 . . . . . . . . . . . . . .	DWord	 00000004 _DATA	
-val3 . . . . . . . . . . . . . .	DWord	 00000008 _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   
